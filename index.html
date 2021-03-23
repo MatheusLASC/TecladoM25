@@ -52,7 +52,7 @@
         var createDefaultEngine = function () { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true, disableWebGL2Support: false }); };
         var scene;
         var notes = new Map();
-        var i,j,x,t;
+        var i,j,x,t,parte;
         var count=-6;
         
 
@@ -92,9 +92,9 @@
 		switch (kbInfo.type) {
 			case BABYLON.KeyboardEventTypes.KEYDOWN:
 				switch (kbInfo.event.key) {
-                    case "a":
-                    case "A":
-                    VivaLaVida();
+                    case "p":
+                    case "P":
+                    Beethoven();
                     break;
                 }
 			break;
@@ -102,10 +102,165 @@
 	});
         }
 
-        function VivaLaVida()
+        async function Beethoven()
         {
-            notes.get(7).play();
-            notes.get(15).play();
+        //Parte com tocada com a Mão Direita Completa de Beethoven
+        //Aula para referência: https://www.youtube.com/watch?v=3Y88hwdqU9U
+            for(parte=0;parte<4;parte++)
+            {
+                    if(parte ==0 || parte == 1 || parte == 3)
+                    {
+                        //Parte 1
+                    for(x=0;x<2;x++)
+                        {
+                            notes.get(9).play();
+                            await new Promise(p => setTimeout(p, 300));
+                            notes.get(21).play();
+                            await new Promise(p => setTimeout(p, 300));
+                        }
+                        console.log("Parte 1 - 1");
+                    }
+                    
+                    
+                        notes.get(9).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(6).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(8).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(7).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(5).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        console.log("Parte 1 - 2");
+                        //Parte 2
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(0).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(2).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(5).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(6).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        console.log("Parte 2");
+
+                        if(parte == 0 || parte ==2)
+                        {
+                            //Parte 3
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(2).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(18).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(6).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(7).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        console.log("Parte 3");
+                        }
+                        if(parte ==1 || parte == 3)
+                        {
+                            //Parte 4 
+                            await new Promise(p => setTimeout(p, 300));
+                            notes.get(2).play();
+                            await new Promise(p => setTimeout(p, 300));
+                            notes.get(7).play();
+                            await new Promise(p => setTimeout(p, 300));
+                            notes.get(6).play();
+                            await new Promise(p => setTimeout(p, 300));
+                            notes.get(5).play();
+                            await new Promise(p => setTimeout(p, 300));
+                            console.log("Parte 4");
+                        if(parte == 1)
+                            {
+                                //Parte 5
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(6).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(7).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(8).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(9).play();
+                                await new Promise(p => setTimeout(p, 300));
+
+                                notes.get(4).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(10).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(9).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(8).play();
+                                await new Promise(p => setTimeout(p, 300));
+
+                                notes.get(3).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(9).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(8).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(7).play();
+                                await new Promise(p => setTimeout(p, 300));
+
+                                notes.get(2).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(8).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(7).play();
+                                await new Promise(p => setTimeout(p, 300));
+                                notes.get(6).play();
+                                await new Promise(p => setTimeout(p, 300));
+
+                                for(x=0;x<2;x++)
+                                {
+                                    notes.get(2).play();
+                                    await new Promise(p => setTimeout(p, 300));
+                                }
+                                    notes.get(9).play();
+                                    await new Promise(p => setTimeout(p, 300));
+                                    notes.get(2).play();
+                                    await new Promise(p => setTimeout(p, 300));
+
+                                    for(x=0;x<2;x++)
+                                {
+                                    notes.get(9).play();
+                                    await new Promise(p => setTimeout(p, 300));
+                                }
+                                
+                                // nota extendida que quis adicionar pois não cabia no teclado
+                                // não aparece visualmente
+                                var Mi5 = new BABYLON.Sound("Mi", "/assets/E5.mp3", scene);
+                                Mi5.play();
+                                await new Promise(p => setTimeout(p, 300));
+
+                                await new Promise(p => setTimeout(p, 300));
+                                for(x=0; x<2; x++)
+                                {
+                                    notes.get(21).play();
+                                    await new Promise(p => setTimeout(p, 300));
+                                    notes.get(9).play();
+                                    await new Promise(p => setTimeout(p, 300));
+                                }
+                                await new Promise(p => setTimeout(p, 300));
+                                console.log("Parte 5");
+                                
+                            }
+                        }
+                        
+                        if(parte == 0 || parte ==2)
+                        {
+                            //Nota de passagem
+                        await new Promise(p => setTimeout(p, 300));
+                        notes.get(2).play();
+                        await new Promise(p => setTimeout(p, 300));
+                        console.log("Nota de Passagem");
+                        }
+                        
+            
+            }
+
+                            
         }
 
 
