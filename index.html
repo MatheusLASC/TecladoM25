@@ -296,6 +296,17 @@
            lateraloposta.position.x = 8.75;
            lateraloposta.position.y = -2;
 
+            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI");
+            var mensagem = BABYLON.GUI.Button.CreateSimpleButton("button", "Modo Demo - Aperte a Tecla 'P'");
+            mensagem.width = 0.2
+            mensagem.top = 250;
+            mensagem.left = 50;
+            mensagem.height = "40px"
+            mensagem.color = "white"
+            mensagem.background = "Blue"
+
+            advancedTexture.addControl(mensagem);
+
         }
 
         function createTom()
