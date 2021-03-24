@@ -60,9 +60,9 @@
             scene = new BABYLON.Scene(engine);
 
             /**** Set camera and light *****/
-            const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 10, new BABYLON.Vector3(0, 0, -3.5));
-            camera.attachControl(canvas, true);
-            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
+           // const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 10, new BABYLON.Vector3(0, 0, -4));
+           var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, -2, -15), scene);
+           const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
             
             managerEvents();
             musicas();
@@ -299,7 +299,7 @@
             var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("myUI");
             var mensagem = BABYLON.GUI.Button.CreateSimpleButton("button", "Modo Demo - Aperte a Tecla 'P'");
             mensagem.width = 0.2
-            mensagem.top = 250;
+            mensagem.top = 300;
             mensagem.left = 50;
             mensagem.height = "40px"
             mensagem.color = "white"
@@ -381,6 +381,12 @@
                 }
                 noteTom.box.position.y = -2;
                 noteTom.box.position.x = count;
+
+                noteTom.particula.emitter.y = -6.5;
+                noteTom.particula.emitter.x = count;
+                noteTom.particula.minEmitBox.y = 1;
+                noteTom.particula.maxEmitBox.y = -2;
+
                 count++;
                 notes.set(i,noteTom);
 
@@ -444,12 +450,17 @@
                 noteTom.box.position.y = -1;
                 noteTom.box.position.z = -0.5;
                 noteTom.box.position.x = count;
+                noteTom.particula.emitter.y = -6.5;
+                noteTom.particula.emitter.x = count;
+                noteTom.particula.minEmitBox.y = 1;
+                noteTom.particula.maxEmitBox.y = -1;
 
                 if(i == 16 || i == 19 || i== 21)
                 {
                     count++;
                 }
                 count++;
+                
                 notes.set(i,noteTom);
 
   
@@ -552,16 +563,50 @@
                  
                 }
 
+                
  
                 //modelar cor das teclas
                 //aplicar efeito de particula
                 this.box = BABYLON.MeshBuilder.CreateBox(noteName, {height: tamanho, width: largura, faceUV: faceUV});
                 this.box.material = teclasMat;
+
+                //  particula na classe
+                this.particula = new BABYLON.ParticleSystem(noteName, 5000, scene);
+                
+                this.particula.particleTexture = new BABYLON.Texture("/assets/play.png", scene);
+
+                this.particula.color1 = new BABYLON.Color4(0, 0, 1);
+                this.particula.color2 = new BABYLON.Color4(0, 0, 0.5);
+                this.particula.colorDead = new BABYLON.Color4(0, 0, 0, 0.0);
+
+                this.particula.minSize = 0.1;
+                this.particula.maxSize = 0.5;
+
+    
+                this.particula.minLifeTime = 0.5;
+                this.particula.maxLifeTime = 1;
+
+                this.particula.emitRate = 150;
+
+                this.particula.blendMode = BABYLON.ParticleSystem.BLENDMODE_STANDARD;
+
+                
+                this.particula.minAngularSpeed = 0;         
+                this.particula.maxAngularSpeed = Math.PI;        
+                this.particula.minEmitPower = 0.5;
+                this.particula.maxEmitPower = 1;
+                this.particula.updateSpeed = 0.025;
+
+                
             }
 
             play() {
                 this.note.play();
                 scene.beginDirectAnimation(this.box, [this.rSlide], 0, 5, true);
+                //iniciando a particula
+                
+                this.particula.start();
+                this.particula.targetStopDuration = 1;
             }
         }
     </script>
